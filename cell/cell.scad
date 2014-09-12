@@ -9,19 +9,18 @@ function x_offset(width) = (width/2) - leg(width) * cos(15);
 function y_offset(width, length) = length/2 - (leg(width) * sin(15));
 
 // Core size variables
-lip = 3;
-h = 33+lip;
+h = 33;
 w = 60;
 l = 90;
 
 // Values for interior space
-h_pad = -1;
+h_pad = 5;
 w_pad = 5;
 l_pad = 5;
 
 difference(){
 // The exterior shape
-union(){
+%union(){
 cube([w, l, h], center=true); // Center Cube
 translate([x_offset(w),-y_offset(w,l),0]){
 	rotate([0,0,30]) cube([edge_length(w),edge_length(w),h], center=true);
@@ -36,10 +35,6 @@ translate([x_offset(w),y_offset(w,l),0]){
 translate([-x_offset(w),y_offset(w,l),0]){
 	rotate([0,0,30]) cube([edge_length(w),edge_length(w),h], center=true);
 }}
-
-// The teeth
-translate([-w/2.2,0,h/2]){cube([4, 6, 10], center=true);}
-translate([w/2.2,0,h/2]){cube([4, 6, 10], center=true);}
 
 // The interior shape
 translate([0,0,0]){
@@ -59,24 +54,6 @@ translate([-x_offset(w-w_pad),y_offset(w-w_pad,l-l_pad),0]){
 	rotate([0,0,30]) cube([edge_length(w-w_pad),edge_length(w-w_pad),h-h_pad], center=true);
 }}}}
 
-// The floor of the case
-translate([0,0,-(h/2)+(h_lid/2)+lip]){
-union(){
-cube([w, l, h_lid], center=true); // Center Cube
-translate([x_offset(w),-y_offset(w,l),0]){
-	rotate([0,0,30]) cube([edge_length(w),edge_length(w),h_lid], center=true);
-}
-translate([-x_offset(w),-y_offset(w,l),0]){
-	rotate([0,0,-30]) cube([edge_length(w),edge_length(w),h_lid], center=true);
-}
-
-translate([x_offset(w),y_offset(w,l),0]){
-	rotate([0,0,-30]) cube([edge_length(w),edge_length(w),h_lid], center=true);
-}
-translate([-x_offset(w),y_offset(w,l),0]){
-	rotate([0,0,30]) cube([edge_length(w),edge_length(w),h_lid], center=true);
-}}}
-
 
 // The lid
 h_lid = 3;
@@ -87,8 +64,6 @@ translate([0,0,40]){
 difference(){
 union(){
 cube([w, l, h_lid], center=true); // Center Cube
-translate([-w/2.2,0,-h_lid*1.5]){cube([3, 5, 8], center=true);} // The teeth
-translate([w/2.2,0,-h_lid*1.5]){cube([3, 5, 8], center=true);}
 translate([x_offset(w),-y_offset(w,l),0]){
 	rotate([0,0,30]) cube([edge_length(w),edge_length(w),h_lid], center=true);
 }
