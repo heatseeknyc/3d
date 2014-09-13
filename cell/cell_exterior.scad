@@ -1,3 +1,5 @@
+$fn = 100; // Set circles to high-precision
+
 // Functions for calculating the half-hexagons
 function edge_length(width) = (width/2) / cos(30); // CAH
 function point_height(width) = (width/2) * tan(30); // TOA
@@ -23,7 +25,7 @@ l_pad = 5;
 h_cutout = 3;
 hex_edge = edge_length(w/1.6);
 
-rotate([0,0,0]){
+rotate([90,0,0]){
 	difference(){
 		// The exterior shape
 		union(){
@@ -49,6 +51,7 @@ rotate([0,0,0]){
 				translate([-x_offset(w),y_offset(w,l),0]){
 					rotate([0,0,30]) cube([edge_length(w),edge_length(w),h], center=true);
 				}
+				rotate([0,90,0]) cylinder(100, r=4, center=true);
 			}
 		}
 
