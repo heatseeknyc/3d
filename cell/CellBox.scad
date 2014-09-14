@@ -14,9 +14,9 @@ w = (55) * scaling;
 l = (85) * scaling;
 
 // Values for interior space
-h_pad = 2;
-w_pad = 4;
-l_pad = 4;
+w_pad = 3;
+l_pad = 3;
+h_pad = 1.5;
 
 difference(){
 // The exterior shape
@@ -48,7 +48,7 @@ translate([0,-point_height(w+w_pad),lip]){rotate([0,90]) cylinder(h=100, r=4, ce
 translate([0,0,2]){
 union(){
 cube([w, l, h], center=true); // Center Cube
-translate([x_offset(w),-y_offset(w,l),0]){
+#translate([x_offset(w),-y_offset(w,l),0]){
 	rotate([0,0,30]) cube([edge_length(w),edge_length(w),h], center=true);
 }
 translate([-x_offset(w),-y_offset(w,l),0]){

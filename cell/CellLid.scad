@@ -14,19 +14,21 @@ w = (55) * scaling;
 l = (85) * scaling;
 
 // Values for interior space
-h_pad = 2;
-w_pad = 4;
-l_pad = 4;
+w_pad = 3;
+l_pad = 3;
 
 // The lid
-h_lid = 2;
+h_lid = 1;
+
+// The teeth
+t_height = 6;
 
 rotate([180,00,0]){
 difference(){
 union(){
 cube([w+w_pad, l+l_pad, h_lid], center=true); // Center Cube
-translate([-(w+w_pad)/2.15,0,-h_lid*1.5]){cube([1.5, 5, 8], center=true);} // The teeth
-translate([(w+w_pad)/2.15,0,-h_lid*1.5]){cube([1.5, 5, 8], center=true);}
+translate([-(w+w_pad)/2.15,0,-t_height/2]){cube([1.5, 5, t_height], center=true);} // The teeth
+translate([(w+w_pad)/2.15,0,-t_height/2]){cube([1.5, 5, t_height], center=true);}
 translate([x_offset(w+w_pad),-y_offset(w+w_pad,l+l_pad),0]){
 	rotate([0,0,30]) cube([edge_length(w+w_pad),edge_length(w+w_pad),h_lid], center=true);
 }

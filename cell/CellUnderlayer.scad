@@ -14,13 +14,12 @@ w = (55) * scaling;
 l = (85) * scaling;
 
 // Values for interior space
-h_pad = 2;
-w_pad = 4;
-l_pad = 4;
-
+w_pad = 3;
+l_pad = 3;
 
 // The lid
 h_lid = 1;
+
 function hex_len(width) = 2 * (cos(30) * width);
 hex_edge = edge_length(w/2);
 
