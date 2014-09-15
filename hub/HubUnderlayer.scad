@@ -14,7 +14,7 @@ function y_offset2(width, length) = (length/2) + (leg(width) * cos(15)) - point_
 scaling = 1;
 h_lid = 1;
 w = (65) * scaling;
-l = (86 + 50 + point_height(w)) * scaling; // 86 = Pi, 50 = Dongle, ~20 for point height
+l = (90 + (point_height(w) * 2)) * scaling; // 90 = Pi, ~20 for point height
 
 // Values for wall thickness
 w_pad = 3;
@@ -49,7 +49,7 @@ rotate([0,0,0]){
     }
 
     // The cutout
-    translate([0,55,0]){
+    translate([0,45,0]){
       union(){
       	rotate([0,0,0]) cube([hex_len(hex_edge),hex_edge,h_lid], center=true);
       	rotate([0,0,60]) cube([hex_len(hex_edge),hex_edge,h_lid], center=true);

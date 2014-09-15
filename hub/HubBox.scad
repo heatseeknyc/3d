@@ -14,7 +14,7 @@ function y_offset2(width, length) = (length/2) + (leg(width) * cos(15)) - point_
 scaling = 1;
 h = (35) * scaling;
 w = (65) * scaling;
-l = (90 + point_height(w)) * scaling;// 90 = Pi
+l = (90 + (point_height(w)) * 2) * scaling;// 90 = Pi, 2x point height to compensate for upward shift of center block.
 
 // Values for wall thickness
 w_pad = 3;
@@ -58,7 +58,7 @@ difference(){ // Between the exterior and interior
 			translate([-x_offset(w),y_offset(w,l),0]){
 				rotate([0,0,30]) cube([edge_length(w),edge_length(w),h], center=true);
 			}
-			translate([-w/3,-l/4,0]){
+			translate([-w/3,-l/3.3,0]){
 				difference(){
 					rotate([0,0,30]){
 						cube([w, w/2, h], center=true);
@@ -68,7 +68,7 @@ difference(){ // Between the exterior and interior
 					}
 				}
 			}
-			translate([w/3,-l/4,0]){
+			translate([w/3,-l/3.3,0]){
 				difference(){
 					rotate([0,0,-30]){
 						cube([w, w/2, h], center=true);
@@ -80,8 +80,16 @@ difference(){ // Between the exterior and interior
 			}
 		}
 	}
-	translate([w/2,-(l-point_height(w))/3,(-h/3)+3]){cube([20, 9, 5], center=true);} // Charger hole
-	#translate([-w/5,(l+point_height(w))/2,0]){cube([35, 30, 18], center=true);} // Dongle hole
+	rotate([90,0,90]){ // Charger hole
+		translate([-w/2,(-h/3)+3,w/2]){
+			scale([2,1,1]) cylinder(20, r=(8/2), center=true);
+		}
+	}
+	translate([0,(L+point_height(w))/2,0]){ // Dongle hole
+		rotate([90,0,0]){
+			scale([2,1,1]) cylinder(75, r=(35/4), center=true);
+		}
+	}
 	translate([-W/2.15,0,h/2]){cube([3, 6, 10], center=true);} // Lid grooves
 	translate([W/2.15,0,h/2]){cube([3, 6, 10], center=true);}
 }

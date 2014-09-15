@@ -14,7 +14,7 @@ function y_offset2(width, length) = (length/2) + (leg(width) * cos(15)) - point_
 scaling = 1;
 h_lid = 1;
 w = (65) * scaling;
-l = (86 + 50 + point_height(w)) * scaling; // 86 = Pi, 50 = Dongle, ~20 for point height
+l = (90 + (point_height(w) * 2)) * scaling; // 90 = Pi, ~20 for point height
 
 // Values for wall thickness
 w_pad = 3;
@@ -31,7 +31,7 @@ t_height = 6;
 function hex_len(width) = 2 * (cos(30) * width);
 hex_edge = edge_length(w/1.6);
 
-rotate([0,0,0]){
+rotate([180,0,180]){
   difference(){
     difference(){
       union(){
