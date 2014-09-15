@@ -12,13 +12,11 @@ scaling = 1;
 h = (35) * scaling;
 w = (55) * scaling;
 l = (85) * scaling;
+h_lid = 1;
 
 // Values for interior space
 w_pad = 3;
 l_pad = 3;
-
-// The lid
-h_lid = 1;
 
 // The teeth
 t_height = 6;

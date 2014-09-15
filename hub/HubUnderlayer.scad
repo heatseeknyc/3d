@@ -24,9 +24,6 @@ W = w + w_pad;
 L = l + l_pad;
 btm = W*0.9;
 
-// The teeth
-t_height = 6;
-
 // The lid
 function hex_len(width) = 2 * (cos(30) * width);
 hex_edge = edge_length(w/1.6);
@@ -36,8 +33,6 @@ rotate([0,0,0]){
     difference(){
       union(){
         cube([W, L, h_lid], center=true); // Center Cube
-        translate([-W/2.15,0,-t_height/2]){cube([2, 5, t_height], center=true);} // The teeth
-        translate([W/2.15,0,-t_height/2]){cube([2, 5, t_height], center=true);}
         translate([x_offset(W),y_offset(W,L),0]){
         	rotate([0,0,-30]) cube([edge_length(W),edge_length(W),h_lid], center=true);
         }
@@ -50,6 +45,15 @@ rotate([0,0,0]){
       }
       translate([-x_offset(btm),-y_offset2(btm,L),0]){
       	rotate([0,0,30]) cube([edge_length(btm),edge_length(btm),h_lid], center=true);
+      }
+    }
+
+    // The cutout
+    translate([0,55,0]){
+      union(){
+      	rotate([0,0,0]) cube([hex_len(hex_edge),hex_edge,h_lid], center=true);
+      	rotate([0,0,60]) cube([hex_len(hex_edge),hex_edge,h_lid], center=true);
+      	rotate([0,0,120]) cube([hex_len(hex_edge),hex_edge,h_lid], center=true);
       }
     }
   }
